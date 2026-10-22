@@ -1,10 +1,10 @@
-# HITS Arcade — touchscreen arcade (9 games)
+# HITS Arcade — touchscreen arcade (10 games)
 React + TypeScript + Vite + Tailwind + Framer Motion. No login, no sign-up, no backend. Name and scores are stored in the browser (localStorage).
 
-Games: Pattern Memory, Jigsaw Puzzle, Quiz Time, Spin Wheel, Connecting Dots, Crossword, Matching Pairs, Number Guess, Tic-Tac-Toe.
+Games: Pattern Memory, Jigsaw Puzzle, Quiz Time, Spin Wheel, Connecting Dots, Crossword, Matching Pairs, Number Guess, Tic-Tac-Toe, Bubble Burst.
 
 ## How it works
-- The app opens on the lobby with all 9 games on a CRT screen and an arcade control deck (joystick, round buttons, coin slot).
+- The app opens on the lobby with all 10 games on a CRT screen and an arcade control deck (joystick, round buttons, coin slot).
 - **Every time a game is opened it asks for a player name** (the last name is pre-filled). The score is saved with that name.
 - **Each game has its own ranked leaderboard**, shown on the game's start screen and the results screen (best score per player, ties go to whoever got there first). The lobby only shows current champions.
 - Results screen buttons: Play again (same player), **Next player** (asks for a new name), All games.

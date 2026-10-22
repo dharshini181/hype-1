@@ -1,0 +1,10 @@
+import {expect,it} from 'vitest';import {COLORS,GOLD_PTS,LEVELS,SIZES,Bubble,base,multiplier,popScore,spawn,step} from './logic';
+const seq=(...v:number[])=>{let i=0;return()=>v[i++%v.length]};
+const mk=(o:Partial<Bubble>={}):Bubble=>({id:1,x:50,y:50,r:8,vy:20,color:COLORS[0],gold:false,ph:0,age:0,...o});
+it('spawns fully inside the play area, below the bottom edge',()=>{for(let k=0;k<300;k++){const b=spawn(k,LEVELS.Hard);expect(b.x-b.r).toBeGreaterThanOrEqual(0);expect(b.x+b.r).toBeLessThanOrEqual(100);expect(b.y).toBeLessThan(0)}});
+it('rise speed stays within the level range',()=>{for(const lv of Object.values(LEVELS))for(let k=0;k<100;k++){const b=spawn(k,lv);expect(b.vy).toBeGreaterThanOrEqual(lv.rise[0]);expect(b.vy).toBeLessThanOrEqual(lv.rise[1])}});
+it('gold bubbles are rare, gold and worth the most',()=>{const g=spawn(1,LEVELS.Easy,seq(.01,0,.5,.5,.5));expect(g.gold).toBe(true);expect(g.color).toBe('#FFD700');expect(base(g)).toBe(GOLD_PTS);const n=spawn(2,LEVELS.Easy,seq(.9,.99,.5,.5,.5));expect(n.gold).toBe(false);expect(n.r).toBe(SIZES[2].r)});
+it('smaller bubbles pay more',()=>{expect(base(mk({r:6}))).toBeGreaterThan(base(mk({r:8})));expect(base(mk({r:8}))).toBeGreaterThan(base(mk({r:10.5})))});
+it('combo multiplier grows every 5 pops and caps at x4',()=>{expect([0,4,5,9,10,15,40].map(multiplier)).toEqual([1,1,2,2,3,4,4]);expect(popScore(mk({r:6}),10)).toBe(90)});
+it('moves bubbles up and drops those that leave the top',()=>{const r=step([mk({y:50,vy:20}),mk({id:2,y:120,vy:10})],1);expect(r.alive.map(b=>b.id)).toEqual([1]);expect(r.alive[0].y).toBe(70);expect(r.escaped.map(b=>b.id)).toEqual([2])});
+it('goals rise with difficulty',()=>{expect(LEVELS.Easy.goal).toBeLessThan(LEVELS.Medium.goal);expect(LEVELS.Medium.goal).toBeLessThan(LEVELS.Hard.goal)});

@@ -1,7 +1,7 @@
 import {motion} from 'framer-motion';import {boardOf,sameP,useStore} from '../lib/store';import {IMedal} from './Icons';
 const MEDAL=['#FFD700','#FF69B4','#FF4500'];
 /** Arcade-style ranked list for one game. `me` highlights the player who just played / is about to play. */
-export function Board({g,color,me,limit=5,title='HIGH SCORES'}:{g:string;color:string;me?:string;limit?:number;title?:string}){
+export function Board({g,color,me,limit=Infinity,title='HIGH SCORES'}:{g:string;color:string;me?:string;limit?:number;title?:string}){
 const {sessions}=useStore();const rows=boardOf(sessions,g),top=rows.slice(0,limit);
 const mine=me?rows.findIndex(r=>sameP(r.p,me)):-1;const extra=mine>=limit?mine:-1; // player ranked below the visible list still gets a row
 return <section aria-label={`${title}`} className="rounded-2xl border-2 bg-night/80 p-3 text-left" style={{borderColor:`${color}aa`,boxShadow:`inset 0 0 18px ${color}33`}}>

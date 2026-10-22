@@ -42,10 +42,14 @@ return <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-
 /* ---------- marquee sign with chasing bulbs ---------- */
 const TL=[['H',P.gold],['Y',P.hot],['P',P.fire],['E',P.mag]] as const;
 const Bulbs=({n}:{n:number})=><div className="bulbs flex justify-between px-3" aria-hidden>{Array.from({length:n},(_,i)=><span key={i} className="bulb"/>)}</div>;
-export function Marquee({compact=false}:{compact?:boolean}){
-return <div className="marq relative rounded-[1.75rem] border-4 border-deep bg-gradient-to-b from-panel2 to-panel py-2 shadow-[0_0_30px_rgba(255,0,255,.5),0_8px_0_rgba(0,0,0,.5)]">
-<Bulbs n={compact?14:16}/>
-<div className={`flex items-end justify-center gap-1 ${compact?'py-1':'py-2'}`} aria-label="HYPE, Hindustan XR Division. Play, Innovate, Publish">{TL.map(([ch,col],i)=><motion.span key={i} animate={{y:[0,-6,0]}} transition={{repeat:Infinity,duration:1.8,delay:i*.1,ease:'easeInOut'}} className={`glow font-display leading-none ${compact?'text-3xl':'text-4xl sm:text-6xl'}`} style={{color:col}}>{ch}</motion.span>)}</div>
-<p className={`text-center font-pixel leading-relaxed text-hot ${compact?'text-[.5rem]':'text-[.6rem] sm:text-xs'}`}>HINDUSTAN XR DIVISION</p>
-<p className={`text-center font-pixel text-gold ${compact?'text-[.45rem]':'text-[.5rem] sm:text-[.65rem]'}`}>PLAY • INNOVATE • PUBLISH</p>
-<div className="mt-2"><Bulbs n={compact?14:16}/></div></div>}
+export function Marquee(){
+return <header className="marq relative rounded-2xl border-[3px] border-deep bg-gradient-to-b from-panel2 to-panel px-3 py-1.5 shadow-[0_0_24px_rgba(255,0,255,.5),0_5px_0_rgba(0,0,0,.5)]">
+<Bulbs n={14}/>
+<div className="mx-auto mt-1.5 flex flex-col items-center justify-center gap-1">
+<div className="flex shrink-0 items-center justify-center rounded-xl bg-white px-2 py-1 shadow-[0_0_0_2px_#FFD700,0_0_12px_rgba(255,215,0,.55)]">
+<img src="/hits-logo.png" width={800} height={213} alt="Hindustan Institute of Technology and Science (Deemed to be University)" className="block h-auto w-24 object-contain sm:w-32"/></div>
+<div className="flex flex-col items-center text-center" aria-label="HYPE, Hindustan XR Division. Play, Innovate, Publish">
+<div className="flex items-end justify-center gap-1" aria-hidden>{TL.map(([ch,col],i)=><motion.span key={i} animate={{y:[0,-4,0]}} transition={{repeat:Infinity,duration:1.8,delay:i*.1,ease:'easeInOut'}} className="glow font-display text-2xl leading-none sm:text-4xl" style={{color:col}}>{ch}</motion.span>)}</div>
+<p className="font-pixel text-[.45rem] leading-relaxed text-hot sm:text-[.6rem]">HINDUSTAN XR DIVISION</p>
+<p className="font-pixel text-[.4rem] leading-relaxed text-gold sm:text-[.5rem]">PLAY • INNOVATE • PUBLISH</p></div></div>
+<div className="mt-1.5"><Bulbs n={14}/></div></header>}

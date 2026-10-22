@@ -1,6 +1,6 @@
-import type {GameDef} from '../types';import {CrossIcon,DotsIcon,GuessIcon,JigsawIcon,MemoryIcon,PairsIcon,QuizIcon,SpinIcon,TttIcon} from '../components/Icons';
+import type {GameDef} from '../types';import {BubbleIcon,CrossIcon,DotsIcon,GuessIcon,JigsawIcon,MemoryIcon,PairsIcon,QuizIcon,SpinIcon,TttIcon} from '../components/Icons';
 import {Memory} from './memory/Memory';import {MatchingPairs} from './matching-pairs/MatchingPairs';import {NumberGuess} from './number-guess/NumberGuess';import {TicTacToe} from './tic-tac-toe/TicTacToe';
-import {Jigsaw} from './jigsaw/Jigsaw';import {Quiz} from './quiz/Quiz';import {SpinWheel} from './spin-wheel/SpinWheel';import {Dots} from './connecting-dots/Dots';import {Crossword} from './crossword/Crossword';import {IMAGES} from './jigsaw/logic';
+import {Jigsaw} from './jigsaw/Jigsaw';import {Quiz} from './quiz/Quiz';import {SpinWheel} from './spin-wheel/SpinWheel';import {Dots} from './connecting-dots/Dots';import {Crossword} from './crossword/Crossword';import {BubbleBurst} from './bubble-burst/BubbleBurst';import {IMAGES} from './jigsaw/logic';
 const lv=(def='Medium')=>({key:'level',label:'Difficulty',values:['Easy','Medium','Hard'],def});
 export const GAMES:GameDef[]=[
 {id:'memory',title:'Pattern Memory',tag:'Watch, then repeat',how:'Watch the pads light up, then tap them in the same order. Each round adds a step. Streaks earn bonus points.',color:'#FF00FF',c2:'#FF69B4',dark:false,Icon:MemoryIcon,Game:Memory,options:[lv()]},
@@ -12,4 +12,5 @@ export const GAMES:GameDef[]=[
 {id:'pairs',title:'Matching Pairs',tag:'Flip, remember, match',how:'Flip two cards at a time. Matches stay open and build a streak. Fewer misses and a faster time score higher.',color:'#FF69B4',c2:'#FFD700',dark:false,Icon:PairsIcon,Game:MatchingPairs,options:[lv()]},
 {id:'guess',title:'Number Guess',tag:'Crack the secret number',how:'Guess the secret whole number. You get higher or lower hints. Fewer tries means a bigger score.',color:'#FFD700',c2:'#FF1493',dark:false,Icon:GuessIcon,Game:NumberGuess,options:[lv()]},
 {id:'ttt',title:'Tic-Tac-Toe',tag:'Three in a row',how:'You are X and move first. Win 100 pts, draw 40 (double on Hard vs computer). Tap Finish match to bank your score.',color:'#FF4500',c2:'#FF1493',dark:false,Icon:TttIcon,Game:TicTacToe,options:[{key:'opponent',label:'Opponent',values:['Computer','Friend'],def:'Computer'},lv()]},
+{id:'bubble',title:'Bubble Burst',tag:'Pop them all, fast',how:'Tap the rising bubbles to pop them before they escape. Small bubbles and gold stars score more, and every 5 pops in a row raises your combo up to x4. Reach the goal before time runs out.',color:'#FF69B4',c2:'#FFD700',dark:false,Icon:BubbleIcon,Game:BubbleBurst,options:[lv()]},
 ];
